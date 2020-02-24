@@ -21,10 +21,10 @@ exports = module.exports = functions.auth.user().onDelete((userMetadata, context
   let promises = []
 
   const mailOptions = {
-    from: `"Tarik Huber" <${gmailEmail}>`,
+    from: `"Cliff Coulter" <${gmailEmail}>`,
     to: email,
     subject: `Bye!`,
-    text: `Hey ${displayName || ''}!, We confirm that we have deleted your React Most Wanted account.`
+    text: `Hey ${displayName || ''}!, We confirm that we have deleted your Woody account.`
   }
 
   const sendEmail = mailTransport.sendMail(mailOptions).then(() => {

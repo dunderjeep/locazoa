@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "react-most-wanted-dev",
-    "dev": "react-most-wanted-dev",
-    "prod": "react-most-wanted-3b1b2"
+    "default": "woody-dev-7e1a8",
+    "dev": "woody-dev-7e1a8",
+    "prod": "woody-eb4b8"
   }
 }

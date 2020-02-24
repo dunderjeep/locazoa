@@ -16,22 +16,22 @@ const LPAsync = Loadable({
 
 const config = {
   firebase_config: {
-    apiKey: 'AIzaSyBQAmNJ2DbRyw8PqdmNWlePYtMP0hUcjpY',
-    authDomain: 'react-most-wanted-3b1b2.firebaseapp.com',
-    databaseURL: 'https://react-most-wanted-3b1b2.firebaseio.com',
-    projectId: 'react-most-wanted-3b1b2',
-    storageBucket: 'react-most-wanted-3b1b2.appspot.com',
-    messagingSenderId: '258373383650',
-    appId: '1:258373383650:web:b49ad5dd28da999a'
+    apiKey: "AIzaSyBnEJ1yycQ8nlVhaI2yx0tnDHndDU3Lbzw",
+    authDomain: "woody-eb4b8.firebaseapp.com",
+    databaseURL: "https://woody-eb4b8.firebaseio.com",
+    projectId: "woody-eb4b8",
+    storageBucket: "woody-eb4b8.appspot.com",
+    messagingSenderId: "1076143515724",
+    appId: "1:1076143515724:web:df8b777190d0e5fd976ce9"
   },
   firebase_config_dev: {
-    apiKey: 'AIzaSyB31cMH9nJnERC1WCWA7lQHnY08voLs-Z0',
-    authDomain: 'react-most-wanted-dev.firebaseapp.com',
-    databaseURL: 'https://react-most-wanted-dev.firebaseio.com',
-    projectId: 'react-most-wanted-dev',
-    storageBucket: 'react-most-wanted-dev.appspot.com',
-    messagingSenderId: '70650394824',
-    appId: '1:70650394824:web:7cd3113c37741efc'
+    apiKey: "AIzaSyBUXjYQWkxOKFVJqlR3mNDy2Rv4pH23zeM",
+    authDomain: "woody-dev-7e1a8.firebaseapp.com",
+    databaseURL: "https://woody-dev-7e1a8.firebaseio.com",
+    projectId: "woody-dev-7e1a8",
+    storageBucket: "woody-dev-7e1a8.appspot.com",
+    messagingSenderId: "353514301441",
+    appId: "1:353514301441:web:4c59a762f12ebd12a43800"
   },
   firebase_providers: ['google.com', 'facebook.com', 'twitter.com', 'github.com', 'password', 'phone'],
   initial_state: {

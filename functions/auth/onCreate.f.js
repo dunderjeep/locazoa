@@ -50,10 +50,10 @@ exports = module.exports = functions.auth.user().onCreate((uRecord, context) => 
 
     if (email) {
       const mailOptions = {
-        from: `"Tarik Huber" <${gmailEmail}>`,
+        from: `"Cliff Coulter" <${gmailEmail}>`,
         to: email,
-        subject: `Welcome to React Most Wanted!`,
-        text: `Hey ${displayName || ''}!, Welcome to React Most Wanted. I hope you will enjoy the demo application.`
+        subject: `Welcome to Woody!`,
+        text: `Hey ${displayName || ''}!, Welcome to Woody. I hope you will enjoy the application.`
       }
 
       promises.push(mailTransport.sendMail(mailOptions))

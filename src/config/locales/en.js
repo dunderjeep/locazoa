@@ -1,7 +1,7 @@
 import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  app_name: 'React Most Wanted',
+  app_name: 'Woody',
   dashboard: 'Dashboard',
   about: 'About',
   page_not_found_demo: 'Page not found demo',
@@ -145,7 +145,10 @@ const messages = defineMessages({
   document: 'Document',
   collection: 'Collection',
   infinitelist: 'Infinitelist',
-
+  black: 'Black',
+  green: 'Green',
+  darkGreen: 'Dark Green',
+  blue: 'Blue'
 });
 
 export default messages;

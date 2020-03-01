@@ -7,7 +7,14 @@ import yellow from '@material-ui/core/colors/yellow'
 const themes = [
   {
     id: 'default',
-    color: blue[500]
+    color: green[900],
+    source: {
+      palette: {
+        primary: {
+          main: green[900],
+        }
+      }
+    }
   },
   {
     id: 'black',

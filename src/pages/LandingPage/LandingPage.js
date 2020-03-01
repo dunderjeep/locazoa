@@ -78,7 +78,8 @@ const styles = theme => ({
     }
   },
   button: {
-    marginTop: theme.spacing(1) * 3
+    marginTop: theme.spacing(1) * 3,
+    color: theme.palette.primary.main
   },
   logo: {
     color: 'red',

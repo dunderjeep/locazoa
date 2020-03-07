@@ -117,6 +117,12 @@ const getMenuItems = props => {
       leftIcon: <ListIcon />
     },
     {
+      value: '/posts',
+      visible: isAuthorised,
+      primaryText: intl.formatMessage({ id: 'posts' }),
+      leftIcon: <ListIcon />
+    },
+    {
       value: '/about',
       visible: isAuthorised,
       primaryText: intl.formatMessage({ id: 'about' }),

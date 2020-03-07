@@ -12,6 +12,8 @@ const AsyncCompany = MyLoadable({ loader: () => import('../pages/Companies/Compa
 const AsyncCompanies = MyLoadable({ loader: () => import('../pages/Companies/Companies') }, [AsyncCompany])
 const AsyncTask = MyLoadable({ loader: () => import('../pages/Tasks/Task') })
 const AsyncTasks = MyLoadable({ loader: () => import('../pages/Tasks/Tasks') }, [AsyncTask])
+const AsyncPost = MyLoadable({ loader: () => import('../pages/Posts/Post') })
+const AsyncPosts = MyLoadable({ loader: () => import('../pages/Posts/Posts') }, [AsyncPost])
 
 const routes = [
   <RestrictedRoute type="private" path="/" exact component={AsyncDashboard} />,
@@ -22,7 +24,10 @@ const routes = [
   <RestrictedRoute type="private" path="/companies/create" exact component={AsyncCompany} />,
   <RestrictedRoute type="private" path="/tasks" exact component={AsyncTasks} />,
   <RestrictedRoute type="private" path="/tasks/create" exact component={AsyncTask} />,
-  <RestrictedRoute type="private" path="/tasks/edit/:uid" exact component={AsyncTask} />
+  <RestrictedRoute type="private" path="/tasks/edit/:uid" exact component={AsyncTask} />,
+  <RestrictedRoute type="private" path="/posts" exact component={AsyncPosts} />,
+  <RestrictedRoute type="private" path="/posts/create" exact component={AsyncPost} />,
+  <RestrictedRoute type="private" path="/posts/edit/:uid" exact component={AsyncPost} />
 ]
 
 export default routes

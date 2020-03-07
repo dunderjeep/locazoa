@@ -20,7 +20,11 @@ class Tasks extends Component {
       <div key={key}>
         <ListItem onClick={() => history.push(`/tasks/edit/${key}`)} key={key}>
           <AltIconAvatar alt="task" src={photoURL} icon={<Delete />} />
-          <ListItemText primary={title} secondary={full_name} style={{ minWidth: 120 }} />
+          <ListItemText
+            primary={title}
+            secondary={full_name}
+            style={{ minWidth: 120 }}
+          />
         </ListItem>
         <Divider variant="inset" />
       </div>
@@ -36,13 +40,10 @@ class Tasks extends Component {
         createGrant="create_task"
         filterFields={filterFields}
         renderItem={this.renderItem}
+        isGranted={s => g => true}
       />
     )
   }
 }
 
-export default compose(
-  injectIntl,
-  withRouter,
-  withTheme
-)(Tasks)
+export default compose(injectIntl, withRouter, withTheme)(Tasks)

@@ -20,7 +20,11 @@ class Posts extends Component {
       <div key={key}>
         <ListItem onClick={() => history.push(`/posts/edit/${key}`)} key={key}>
           <AltIconAvatar alt="post" src={photoURL} icon={<Delete />} />
-          <ListItemText primary={title} secondary={full_name} style={{ minWidth: 120 }} />
+          <ListItemText
+            primary={title}
+            secondary={full_name}
+            style={{ minWidth: 120 }}
+          />
         </ListItem>
         <Divider variant="inset" />
       </div>
@@ -36,13 +40,10 @@ class Posts extends Component {
         createGrant="create_post"
         filterFields={filterFields}
         renderItem={this.renderItem}
+        isGranted={s => g => true}
       />
     )
   }
 }
 
-export default compose(
-  injectIntl,
-  withRouter,
-  withTheme
-)(Posts)
+export default compose(injectIntl, withRouter, withTheme)(Posts)

@@ -110,6 +110,7 @@ const messages = defineMessages({
   load_more_label: 'More...',
   my_location: 'My Location',
   select_user: 'Select user',
+  operator_contains_label: 'Operator contains label',
   operator_like_label: 'like',
   operator_notlike_label: 'not like',
   operator_equal_label: 'equal',
@@ -153,7 +154,10 @@ const messages = defineMessages({
   black: 'Black',
   green: 'Green',
   darkGreen: 'Dark Green',
-  blue: 'Blue'
+  blue: 'Blue',
+  error_required_field: 'Required field',
+  helper_hint: 'Helper hint',
+  helper_label: 'helper label'
 });
 
 export default messages;

@@ -24,7 +24,7 @@ exports = module.exports = functions.auth.user().onDelete((userMetadata, context
     from: `"Cliff Coulter" <${gmailEmail}>`,
     to: email,
     subject: `Bye!`,
-    text: `Hey ${displayName || ''}!, We confirm that we have deleted your Woody account.`
+    text: `Hey ${displayName || ''}!, We confirm that we have deleted your Harvestr account.`
   }
 
   const sendEmail = mailTransport.sendMail(mailOptions).then(() => {

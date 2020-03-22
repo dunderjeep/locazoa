@@ -165,7 +165,7 @@ const LandingPage = ({ classes, history, theme }) => {
         <meta name="theme-color" content={theme.palette.primary.main} />
         <meta name="apple-mobile-web-app-status-bar-style" content={theme.palette.primary.main} />
         <meta name="msapplication-navbutton-color" content={theme.palette.primary.main} />
-        <title>Woody</title>
+        <title>Harvestr</title>
       </Helmet>
       <AppBar position="static" className={classes.main}>
         <Toolbar disableGutters>
@@ -198,11 +198,11 @@ const LandingPage = ({ classes, history, theme }) => {
                 color="inherit"
                 gutterBottom
                 className={classes.title}
-              >
-                {'Woody'}
+              > 
+                {'Harvestr'}
               </Typography>
               <Typography variant="h5" component="h2" color="inherit" gutterBottom className={classes.h5}>
-                {'Trade Wood.'}
+                {'Community Supported Agriculture (CSA) App'}
               </Typography>
               <Button
                 onClick={() => {

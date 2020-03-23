@@ -33,7 +33,14 @@ const config = {
     messagingSenderId: "353514301441",
     appId: "1:353514301441:web:4c59a762f12ebd12a43800"
   },
-  firebase_providers: ['google.com', 'facebook.com', 'twitter.com', 'github.com', 'password', 'phone'],
+  firebase_providers: [
+    'google.com',
+    // 'facebook.com',
+    // 'twitter.com',
+    // 'github.com',
+    // 'password',
+    // 'phone'
+  ],
   initial_state: {
     themeSource: {
       isNightModeOn: true,

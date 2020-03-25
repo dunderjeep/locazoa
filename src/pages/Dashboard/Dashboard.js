@@ -18,7 +18,7 @@ class Dashboard extends Component {
     return (
       <Activity>
         <Scrollbar>
-
+          
         </Scrollbar>
       </Activity>
     )

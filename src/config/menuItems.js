@@ -111,6 +111,12 @@ const getMenuItems = props => {
       leftIcon: <Business />
     },
     {
+      value: '/boxes',
+      visible: isAuthorised,
+      primaryText: intl.formatMessage({ id: 'boxes' }),
+      leftIcon: <ListIcon />
+    },
+    {
       value: '/tasks',
       visible: isAuthorised,
       primaryText: intl.formatMessage({ id: 'tasks' }),

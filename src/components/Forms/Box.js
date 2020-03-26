@@ -1,10 +1,14 @@
 import Avatar from '@material-ui/core/Avatar'
+import Business from '@material-ui/icons/Business'
+import Photo from '@material-ui/icons/Photo'
 import ListItemText from '@material-ui/core/ListItemText'
 import MenuItem from '@material-ui/core/MenuItem'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import TextField from 'rmw-shell/lib/components/ReduxFormFields/TextField'
+import { ImageCropDialog } from 'rmw-shell/lib/containers/ImageCropDialog'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
+import AvatarImageField from 'rmw-shell/lib/components/ReduxFormFields/AvatarImageField'
 import { VirtualizedSelectField } from 'muishift'
 import { connect } from 'react-redux'
 import { getList } from 'firekit'
@@ -15,7 +19,9 @@ import { withTheme } from '@material-ui/core/styles'
 
 class Form extends Component {
   render() {
-    const { handleSubmit, intl, initialized, users } = this.props
+    const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match } = this.props
+
+    const uid = match.params.uid;
 
     return (
       <form
@@ -54,7 +60,31 @@ class Form extends Component {
           </div>
 
           <br />
+          <AvatarImageField
+            name="photoURL"
+            disabled={!initialized}
+            uid={uid}
+            change={this.props.change}
+            initialized={initialized}
+            icon={<Photo fontSize="large" />}
+            intl={intl}
+            path={'boxes'}
+          />
+          <ImageCropDialog
+            path={`boxes/${uid}`}
+            fileName={'photoURL'}
+            onUploadSuccess={s => {
+              this.handlePhotoUploadSuccess(s)
+            }}
+            open={dialogs.new_company_photo !== undefined}
+            src={dialogs.new_company_photo}
+            handleClose={() => {
+              setDialogIsOpen('new_company_photo', undefined)
+            }}
+            title={intl.formatMessage({ id: 'change_photo' })}
+          />
           <div>
+
             <Field
               name="helper"
               rowHeight={54}

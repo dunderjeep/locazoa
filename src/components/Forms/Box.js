@@ -1,8 +1,8 @@
 import Avatar from '@material-ui/core/Avatar'
-import Business from '@material-ui/icons/Business'
 import Photo from '@material-ui/icons/Photo'
 import ListItemText from '@material-ui/core/ListItemText'
 import MenuItem from '@material-ui/core/MenuItem'
+import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import TextField from 'rmw-shell/lib/components/ReduxFormFields/TextField'
@@ -108,6 +108,14 @@ class Form extends Component {
                 )
               }}
             />
+          </div>
+          <div>
+            <Button type="button" onClick={() => console.log("publish")}>
+              Save
+            </Button>
+            <Button type="button" onClick={() => console.log("publish")}>
+              Publish
+            </Button>
           </div>
         </div>
       </form>

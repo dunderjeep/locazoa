@@ -1,10 +1,10 @@
+import React, { useState } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Photo from '@material-ui/icons/Photo'
 import ListItemText from '@material-ui/core/ListItemText'
 import MenuItem from '@material-ui/core/MenuItem'
-import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import { makeStyles } from '@material-ui/core/styles';  
 import TextField from 'rmw-shell/lib/components/ReduxFormFields/TextField'
 import { ImageCropDialog } from 'rmw-shell/lib/containers/ImageCropDialog'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
@@ -16,14 +16,83 @@ import { injectIntl } from 'react-intl'
 import { setDialogIsOpen } from 'rmw-shell/lib/store/dialogs/actions'
 import { withRouter } from 'react-router-dom'
 import { withTheme } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Typography from '@material-ui/core/Typography';
+import { blue } from '@material-ui/core/colors';
+import PublishIcon from '@material-ui/icons/Publish';
 
-class Form extends Component {
-  render() {
-    const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match } = this.props
+const useStyles = makeStyles({
+  avatar: {
+    backgroundColor: blue[100],
+    color: blue[600],
+  },
+});
 
-    const uid = match.params.uid;
+function SimpleDialog(props) {
+  const classes = useStyles();
+  const { onClose, selectedValue, open } = props;
 
-    return (
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
+  const handleButtonClick = value => {
+    onClose(value);
+  };
+
+  return (
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+        <DialogTitle id="alert-dialog-title">{"Ready to Publish?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            This means making your box visible to all users of the app.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button
+            onClick={handleClose}
+            color="primary"
+            autoFocus
+          >
+            Publish
+          </Button>
+        </DialogActions>
+    </Dialog>
+  );
+}
+
+SimpleDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired,
+};
+
+const Form = props => {
+  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match } = props;
+  const uid = match.params.uid;
+  const [open, setOpen] = useState(false);
+  // const [selectedValue, setSelectedValue] = useState(emails[1]);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = value => {
+    setOpen(false);
+    // setSelectedValue(value);
+  };
+
+
+
+  return (
       <form
         onSubmit={handleSubmit}
         style={{
@@ -38,6 +107,12 @@ class Form extends Component {
         <button type="submit" style={{ display: 'none' }} />
 
         <div>
+          <Typography color="warn">
+            Under Construction
+          </Typography>
+          <Typography>
+            Status: Draft / Published 
+          </Typography>
           <div>
             <Field
               name="title"
@@ -47,7 +122,15 @@ class Form extends Component {
               label={intl.formatMessage({ id: 'title_label' })}
             />
           </div>
-
+          <div>
+            <Field
+              name="price"
+              disabled={!initialized}
+              component={TextField}
+              placeholder={intl.formatMessage({ id: 'price_hint' })}
+              label={intl.formatMessage({ id: 'price_label' })}
+            />
+          </div>
           <div>
             <Field
               name="description"
@@ -58,13 +141,12 @@ class Form extends Component {
               label={intl.formatMessage({ id: 'description_label' })}
             />
           </div>
-
           <br />
           <AvatarImageField
             name="photoURL"
             disabled={!initialized}
             uid={uid}
-            change={this.props.change}
+            change={props.change}
             initialized={initialized}
             icon={<Photo fontSize="large" />}
             intl={intl}
@@ -84,7 +166,33 @@ class Form extends Component {
             title={intl.formatMessage({ id: 'change_photo' })}
           />
           <div>
-
+          <div>
+            <Field
+              name="size"
+              disabled={!initialized}
+              component={TextField}
+              placeholder={intl.formatMessage({ id: 'size_hint' })}
+              label={intl.formatMessage({ id: 'size_label' })}
+            />
+          </div>
+          <div>
+            <Field
+              name="length"
+              disabled={!initialized}
+              component={TextField}
+              placeholder={intl.formatMessage({ id: 'subscription_length_hint' })}
+              label={intl.formatMessage({ id: 'subscription_length_label' })}
+            />
+          </div>
+          <div>
+            <Field
+              name="frequency"
+              disabled={!initialized}
+              component={TextField}
+              placeholder={intl.formatMessage({ id: 'subscription_frequency_hint' })}
+              label={intl.formatMessage({ id: 'subscription_frequency_label' })}
+            />
+          </div>
             <Field
               name="helper"
               rowHeight={54}
@@ -110,17 +218,24 @@ class Form extends Component {
             />
           </div>
           <div>
-            <Button type="button" onClick={() => console.log("publish")}>
-              Save
+            <br/>
+            <Button type="button" onClick={handleClickOpen}>
+              Save as Draft
             </Button>
-            <Button type="button" onClick={() => console.log("publish")}>
+            <Button 
+              type="button"
+              onClick={handleClickOpen}
+              variant="contained"
+              color="primary"
+              endIcon={<PublishIcon />}
+            >
               Publish
             </Button>
+            <SimpleDialog open={open} onClose={handleClose} />
           </div>
         </div>
       </form>
-    )
-  }
+  );
 }
 
 Form.propTypes = {
@@ -134,8 +249,7 @@ Form.propTypes = {
 const selector = formValueSelector('box')
 
 const mapStateToProps = state => {
-  const { intl, vehicleTypes, dialogs } = state
-
+  const { intl, vehicleTypes, dialogs } = state;
   return {
     intl,
     vehicleTypes,

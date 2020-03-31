@@ -22,7 +22,7 @@ import { setSimpleValue } from 'rmw-shell/lib/store/simpleValues/actions'
 import QuestionDialog from 'rmw-shell/lib/containers/QuestionDialog'
 
 const Form = props => {
-  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, vehicleTypes, status, setSimpleValue } = props;
+  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, status, setSimpleValue } = props;
   const uid = match.params.uid;
 
   const handlePublishBox = () => {

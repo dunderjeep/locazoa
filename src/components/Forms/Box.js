@@ -247,16 +247,16 @@ const Form = props => {
         <QuestionDialog
             name="publish_box"
             handleAction={handlePublishBox}
-            title={'publish box'}
-            message={'publish box'}
-            action={'publish box'}
+            title={intl.formatMessage({ id: 'publish_box_dialog_title' })}
+            message={intl.formatMessage({ id: 'publish_box_dialog_message' })}
+            action={intl.formatMessage({ id: 'publish' })}
           />
         <QuestionDialog
             name="save_draft"
             handleAction={handleSaveDraft}
-            title={'save draft'}
-            message={'save draft'}
-            action={'save draft'}
+            title={intl.formatMessage({ id: 'save_draft_dialog_title' })}
+            message={intl.formatMessage({ id: 'save_draft_dialog_message' })}
+            action={intl.formatMessage({ id: 'save_draft' })}
           />
       </form>
   );

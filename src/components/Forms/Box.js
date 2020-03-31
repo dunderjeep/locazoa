@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Photo from '@material-ui/icons/Photo'
 import ListItemText from '@material-ui/core/ListItemText'
 import MenuItem from '@material-ui/core/MenuItem'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles';  
 import TextField from 'rmw-shell/lib/components/ReduxFormFields/TextField'
 import { ImageCropDialog } from 'rmw-shell/lib/containers/ImageCropDialog'
 import { Field, reduxForm, formValueSelector, change } from 'redux-form'
@@ -17,13 +16,7 @@ import { setDialogIsOpen } from 'rmw-shell/lib/store/dialogs/actions'
 import { withRouter } from 'react-router-dom'
 import { withTheme } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
-import { blue } from '@material-ui/core/colors';
 import PublishIcon from '@material-ui/icons/Publish';
 import { setSimpleValue } from 'rmw-shell/lib/store/simpleValues/actions'
 import QuestionDialog from 'rmw-shell/lib/containers/QuestionDialog'
@@ -35,13 +28,15 @@ const Form = props => {
   const handlePublishBox = () => {
     props.dispatch(change('box', 'status', 'published'))
     setSimpleValue('publish_box', undefined);
+    handleSubmit();
   }
 
   const handleSaveDraft = () => {
     props.dispatch(change('box', 'status', 'draft'))
     setSimpleValue('save_draft', undefined);
+    // handleSubmit();
   }
-  
+
   return (
       <form
         onSubmit={handleSubmit}
@@ -228,9 +223,12 @@ const mapStateToProps = state => {
   }
 }
 
-const formConfig = { form: 'box', initialValues: { status: 'draft' }, change };
+const formConfig = { 
+  form: 'box',
+  // initialValues: { status: 'draft' }
+};
 
 export default connect(
   mapStateToProps,
-  { setDialogIsOpen, setSimpleValue }
+  { setDialogIsOpen, setSimpleValue, change }
 )(injectIntl(withRouter(withTheme(reduxForm(formConfig)(Form)))))

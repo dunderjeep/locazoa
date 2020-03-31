@@ -28,71 +28,9 @@ import PublishIcon from '@material-ui/icons/Publish';
 import { setSimpleValue } from 'rmw-shell/lib/store/simpleValues/actions'
 import QuestionDialog from 'rmw-shell/lib/containers/QuestionDialog'
 
-const useStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-});
-
-function SimpleDialog(props) {
-  const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    change('box', 'status', 'published');
-    onClose(selectedValue);
-  };
-
-  const handleButtonClick = value => {
-    onClose(value);
-  };
-
-  return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-        <DialogTitle id="alert-dialog-title">{"Ready to Publish?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            This means making your box visible to all users of the app.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button
-            onClick={handleClose}
-            color="primary"
-            autoFocus
-          >
-            Publish
-          </Button>
-        </DialogActions>
-    </Dialog>
-  );
-}
-
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-};
-
 const Form = props => {
   const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, vehicleTypes, status, setSimpleValue } = props;
   const uid = match.params.uid;
-  const [open, setOpen] = useState(false);
-  // const [selectedValue, setSelectedValue] = useState(emails[1]);
-  
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = value => {
-    setOpen(false);
-    // setSelectedValue(value);
-  };
 
   const handlePublishBox = () => {
     props.dispatch(change('box', 'status', 'published'))
@@ -103,8 +41,7 @@ const Form = props => {
     props.dispatch(change('box', 'status', 'draft'))
     setSimpleValue('save_draft', undefined);
   }
-
-
+  
   return (
       <form
         onSubmit={handleSubmit}
@@ -241,7 +178,6 @@ const Form = props => {
             >
               Publish
             </Button>
-            <SimpleDialog open={open} onClose={handleClose} />
           </div>
         </div>
         <QuestionDialog

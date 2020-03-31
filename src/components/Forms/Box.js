@@ -79,7 +79,7 @@ SimpleDialog.propTypes = {
 };
 
 const Form = props => {
-  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, vehicleTypes } = props;
+  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, vehicleTypes, status } = props;
   const uid = match.params.uid;
   const [open, setOpen] = useState(false);
   // const [selectedValue, setSelectedValue] = useState(emails[1]);
@@ -115,7 +115,7 @@ const Form = props => {
             Under Construction
           </Typography>
           <Typography>
-            Status: Draft / Published 
+            Status: {status}
           </Typography>
           <div>
             <Field
@@ -253,18 +253,21 @@ Form.propTypes = {
 const selector = formValueSelector('box')
 
 const mapStateToProps = state => {
-  console.log("state: ", state);
   const { intl, vehicleTypes, dialogs } = state;
+  const status = selector(state, 'status');
   return {
     intl,
     vehicleTypes,
     users: getList(state, 'users'),
     dialogs,
-    photoURL: selector(state, 'photoURL')
+    photoURL: selector(state, 'photoURL'),
+    status
   }
 }
+
+const formConfig = { form: 'box', initialValues: { status: 'draft' }, change };
 
 export default connect(
   mapStateToProps,
   { setDialogIsOpen }
-)(injectIntl(withRouter(withTheme(reduxForm({ form: 'box', initialValues: { status: 'draft' }, change })(Form)))))
+)(injectIntl(withRouter(withTheme(reduxForm(formConfig)(Form)))))

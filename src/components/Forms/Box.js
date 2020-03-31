@@ -25,7 +25,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 import PublishIcon from '@material-ui/icons/Publish';
-
+import { setSimpleValue } from 'rmw-shell/lib/store/simpleValues/actions'
+import QuestionDialog from 'rmw-shell/lib/containers/QuestionDialog'
 
 const useStyles = makeStyles({
   avatar: {
@@ -39,7 +40,6 @@ function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
-    console.log('QOOOOOOOOOOOP');
     change('box', 'status', 'published');
     onClose(selectedValue);
   };
@@ -79,7 +79,7 @@ SimpleDialog.propTypes = {
 };
 
 const Form = props => {
-  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, vehicleTypes, status } = props;
+  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, vehicleTypes, status, setSimpleValue } = props;
   const uid = match.params.uid;
   const [open, setOpen] = useState(false);
   // const [selectedValue, setSelectedValue] = useState(emails[1]);
@@ -94,6 +94,15 @@ const Form = props => {
     // setSelectedValue(value);
   };
 
+  const handlePublishBox = () => {
+    props.dispatch(change('box', 'status', 'published'))
+    setSimpleValue('publish_box', undefined);
+  }
+
+  const handleSaveDraft = () => {
+    props.dispatch(change('box', 'status', 'draft'))
+    setSimpleValue('save_draft', undefined);
+  }
 
 
   return (
@@ -111,9 +120,6 @@ const Form = props => {
         <button type="submit" style={{ display: 'none' }} />
 
         <div>
-          <Typography color="warn">
-            Under Construction
-          </Typography>
           <Typography>
             Status: {status}
           </Typography>
@@ -223,12 +229,12 @@ const Form = props => {
           </div>
           <div>
             <br/>
-            <Button type="button" onClick={handleClickOpen}>
+            <Button type="button" onClick={() => setSimpleValue('save_draft', true)}>
               Save as Draft
             </Button>
             <Button 
               type="button"
-              onClick={() => props.dispatch(change('box', 'status', 'published'))}
+              onClick={() => setSimpleValue('publish_box', true)}
               variant="contained"
               color="primary"
               endIcon={<PublishIcon />}
@@ -238,6 +244,20 @@ const Form = props => {
             <SimpleDialog open={open} onClose={handleClose} />
           </div>
         </div>
+        <QuestionDialog
+            name="publish_box"
+            handleAction={handlePublishBox}
+            title={'publish box'}
+            message={'publish box'}
+            action={'publish box'}
+          />
+        <QuestionDialog
+            name="save_draft"
+            handleAction={handleSaveDraft}
+            title={'save draft'}
+            message={'save draft'}
+            action={'save draft'}
+          />
       </form>
   );
 }
@@ -247,13 +267,16 @@ Form.propTypes = {
   initialized: PropTypes.bool.isRequired,
   setDialogIsOpen: PropTypes.func.isRequired,
   dialogs: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  setSimpleValue: PropTypes.func.isRequired,
 }
 
 const selector = formValueSelector('box')
 
 const mapStateToProps = state => {
-  const { intl, vehicleTypes, dialogs } = state;
+  const { intl, vehicleTypes, dialogs, simpleValues, setSimpleValue } = state;
+  const publish_box = simpleValues.publish_box;
+  const save_draft = simpleValues.save_draft;
   const status = selector(state, 'status');
   return {
     intl,
@@ -261,7 +284,11 @@ const mapStateToProps = state => {
     users: getList(state, 'users'),
     dialogs,
     photoURL: selector(state, 'photoURL'),
-    status
+    status,
+    simpleValues,
+    publish_box,
+    save_draft,
+    setSimpleValue
   }
 }
 
@@ -269,5 +296,5 @@ const formConfig = { form: 'box', initialValues: { status: 'draft' }, change };
 
 export default connect(
   mapStateToProps,
-  { setDialogIsOpen }
+  { setDialogIsOpen, setSimpleValue }
 )(injectIntl(withRouter(withTheme(reduxForm(formConfig)(Form)))))

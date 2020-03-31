@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';  
 import TextField from 'rmw-shell/lib/components/ReduxFormFields/TextField'
 import { ImageCropDialog } from 'rmw-shell/lib/containers/ImageCropDialog'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { Field, reduxForm, formValueSelector, change } from 'redux-form'
 import AvatarImageField from 'rmw-shell/lib/components/ReduxFormFields/AvatarImageField'
 import { VirtualizedSelectField } from 'muishift'
 import { connect } from 'react-redux'
@@ -26,6 +26,7 @@ import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 import PublishIcon from '@material-ui/icons/Publish';
 
+
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
@@ -38,6 +39,8 @@ function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
+    console.log('QOOOOOOOOOOOP');
+    change('box', 'status', 'published');
     onClose(selectedValue);
   };
 
@@ -76,10 +79,11 @@ SimpleDialog.propTypes = {
 };
 
 const Form = props => {
-  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match } = props;
+  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, vehicleTypes } = props;
   const uid = match.params.uid;
   const [open, setOpen] = useState(false);
   // const [selectedValue, setSelectedValue] = useState(emails[1]);
+  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -224,7 +228,7 @@ const Form = props => {
             </Button>
             <Button 
               type="button"
-              onClick={handleClickOpen}
+              onClick={() => props.dispatch(change('box', 'status', 'published'))}
               variant="contained"
               color="primary"
               endIcon={<PublishIcon />}
@@ -249,6 +253,7 @@ Form.propTypes = {
 const selector = formValueSelector('box')
 
 const mapStateToProps = state => {
+  console.log("state: ", state);
   const { intl, vehicleTypes, dialogs } = state;
   return {
     intl,
@@ -262,4 +267,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { setDialogIsOpen }
-)(injectIntl(withRouter(withTheme(reduxForm({ form: 'box' })(Form)))))
+)(injectIntl(withRouter(withTheme(reduxForm({ form: 'box', initialValues: { status: 'draft' }, change })(Form)))))

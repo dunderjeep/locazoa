@@ -116,3 +116,8 @@ MIT
 Hey dude! Help me out with a couple of :beers:!
 
 [![Beerpay](https://beerpay.io/TarikHuber/react-most-wanted/badge.svg?style=beer-square)](https://beerpay.io/TarikHuber/react-most-wanted) [![Beerpay](https://beerpay.io/TarikHuber/react-most-wanted/make-wish.svg?style=flat-square)](https://beerpay.io/TarikHuber/react-most-wanted?focus=wish)
+
+
+firebase deploy --only functions
+firebase deploy --only database
+firebase deploy --only firestore

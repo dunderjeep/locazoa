@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Photo from '@material-ui/icons/Photo'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import PropTypes from 'prop-types'
 import TextField from 'rmw-shell/lib/components/ReduxFormFields/TextField'
 import { ImageCropDialog } from 'rmw-shell/lib/containers/ImageCropDialog'
-import { Field, reduxForm, formValueSelector, change } from 'redux-form'
+import { Field, reduxForm, formValueSelector, change, submit } from 'redux-form'
 import AvatarImageField from 'rmw-shell/lib/components/ReduxFormFields/AvatarImageField'
 import { VirtualizedSelectField } from 'muishift'
 import { connect } from 'react-redux'
@@ -19,22 +19,20 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import PublishIcon from '@material-ui/icons/Publish';
 import { setSimpleValue } from 'rmw-shell/lib/store/simpleValues/actions'
-import QuestionDialog from 'rmw-shell/lib/containers/QuestionDialog'
+import QuestionDialog from '../../containers/QuestionDialog'
 
 const Form = props => {
   const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, status, setSimpleValue } = props;
   const uid = match.params.uid;
 
   const handlePublishBox = () => {
-    props.dispatch(change('box', 'status', 'published'))
+    handleSubmit(values => props.onSubmit({ ...values, status: 'published' }))();
     setSimpleValue('publish_box', undefined);
-    handleSubmit();
   }
 
   const handleSaveDraft = () => {
-    props.dispatch(change('box', 'status', 'draft'))
+    handleSubmit(values => props.onSubmit({ ...values, status: 'draft' }))();
     setSimpleValue('save_draft', undefined);
-    // handleSubmit();
   }
 
   return (
@@ -84,7 +82,7 @@ const Form = props => {
             />
           </div>
           <br />
-          <AvatarImageField
+          {/* <AvatarImageField
             name="photoURL"
             disabled={!initialized}
             uid={uid}
@@ -106,7 +104,7 @@ const Form = props => {
               setDialogIsOpen('new_company_photo', undefined)
             }}
             title={intl.formatMessage({ id: 'change_photo' })}
-          />
+          /> */}
           <div>
           <div>
             <Field
@@ -181,6 +179,7 @@ const Form = props => {
             title={intl.formatMessage({ id: 'publish_box_dialog_title' })}
             message={intl.formatMessage({ id: 'publish_box_dialog_message' })}
             action={intl.formatMessage({ id: 'publish' })}
+            handleDelete={() => console.log("to satisfy handle delete required prop")}
           />
         <QuestionDialog
             name="save_draft"
@@ -188,6 +187,7 @@ const Form = props => {
             title={intl.formatMessage({ id: 'save_draft_dialog_title' })}
             message={intl.formatMessage({ id: 'save_draft_dialog_message' })}
             action={intl.formatMessage({ id: 'save_draft' })}
+            handleDelete={() => console.log("to satisfy handle delete required prop")}
           />
       </form>
   );
@@ -205,7 +205,7 @@ Form.propTypes = {
 const selector = formValueSelector('box')
 
 const mapStateToProps = state => {
-  const { intl, vehicleTypes, dialogs, simpleValues, setSimpleValue } = state;
+  const { intl, vehicleTypes, dialogs, simpleValues, setSimpleValue,  } = state;
   const publish_box = simpleValues.publish_box;
   const save_draft = simpleValues.save_draft;
   const status = selector(state, 'status');
@@ -219,13 +219,12 @@ const mapStateToProps = state => {
     simpleValues,
     publish_box,
     save_draft,
-    setSimpleValue
+    setSimpleValue,
   }
 }
 
 const formConfig = { 
-  form: 'box',
-  // initialValues: { status: 'draft' }
+  form: 'box'
 };
 
 export default connect(

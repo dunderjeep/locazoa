@@ -1,3 +1,5 @@
+rules_version = "2";
+
 service cloud.firestore {
   match /databases/{database}/documents {
   
@@ -51,13 +53,9 @@ service cloud.firestore {
       }
     }
 
-    match /boxes {
-      allow read: if resource.data.status == 'published' || isOwner();
-      allow write: if isSignedIn() && isOwner();
-      match /{document=**}{
-        allow read: if resource.data.status == 'published' || isOwner();
-        allow write: if isSignedIn() && isOwner();
-      }
+    match /boxes/{box=**} {
+      allow read: if resource.data.status == 'published' || request.auth.uid  == resource.data.author;
+      allow write: if request.auth.uid == resource.data.author;
     }
 
     /// RULES END ///

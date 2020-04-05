@@ -1,7 +1,7 @@
 import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  app_name: 'Harvestr',
+  app_name: 'Locazoa',
   dashboard: 'Dashboard',
   about: 'About',
   page_not_found_demo: 'Page not found demo',

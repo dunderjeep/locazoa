@@ -54,8 +54,9 @@ service cloud.firestore {
     }
 
     match /boxes/{box=**} {
-      allow read: if resource.data.status == 'published' || request.auth.uid  == resource.data.author;
-      allow write: if request.auth.uid == resource.data.author;
+      allow read, write: if true;
+      //allow read: if resource.data.status == 'published' || request.auth.uid  == resource.data.author;
+      //allow write: if request.auth.uid == resource.data.author;
     }
 
     /// RULES END ///

@@ -52,8 +52,8 @@ exports = module.exports = functions.auth.user().onCreate((uRecord, context) => 
       const mailOptions = {
         from: `"Cliff Coulter" <${gmailEmail}>`,
         to: email,
-        subject: `Welcome to Harvestr!`,
-        text: `Hey ${displayName || ''}!, Welcome to Harvestr. I hope you will enjoy the application.`
+        subject: `Welcome to Locazoa!`,
+        text: `Hey ${displayName || ''}!, Welcome to Locazoa. I hope you will enjoy the application.`
       }
 
       promises.push(mailTransport.sendMail(mailOptions))

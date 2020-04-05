@@ -18,6 +18,8 @@ import { withTheme } from '@material-ui/core/styles'
 //   }
 // }
 
+// https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_map - how to map out boxes
+
 const Boxes = props => {
   const { boxes }= useSelector(state => state.collections);
   const users = useSelector(state => state.users);

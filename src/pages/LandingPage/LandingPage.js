@@ -177,7 +177,7 @@ const LandingPage = ({ classes, history, theme }) => {
           <Tooltip id="tooltip-icon1" title="Sign in">
             <IconButton
               name="signin"
-              aria-label="Open Github"
+              aria-label="Open Sign In"
               color="#000"
               onClick={() => {
                 history.push('/signin')

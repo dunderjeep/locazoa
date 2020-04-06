@@ -1,7 +1,8 @@
 import React from 'react'
 import Loadable from 'react-loadable'
 import getMenuItems from './menuItems'
-import LoadingComponent from 'rmw-shell/lib/components/LoadingComponent'
+// import LoadingComponent from 'rmw-shell/lib/components/LoadingComponent'
+import LoadingComponent from '../components/LoadingComponent'
 import locales from './locales'
 import routes from './routes'
 import themes from './themes'
@@ -44,7 +45,7 @@ const config = {
   initial_state: {
     themeSource: {
       isNightModeOn: false,
-      source: 'default'
+      source: 'light'
     },
     locale: 'en'
   },

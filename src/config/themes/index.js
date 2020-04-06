@@ -42,6 +42,17 @@ const themes = [
     }
   },
   {
+    id: 'light',
+    color: '#0000',
+    source: {
+      palette: {
+        primary: '#fffff',
+        secondary: pink,
+        error: red
+      }
+    }
+  },
+  {
     id: 'green',
     color: green[500],
     source: {

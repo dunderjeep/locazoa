@@ -2,7 +2,8 @@ import * as serviceWorker from 'rmw-shell/lib/utils/serviceWorker'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Loadable from 'react-loadable'
-import LoadingComponent from 'rmw-shell/lib/components/LoadingComponent'
+// import LoadingComponent from 'rmw-shell/lib/components/LoadingComponent'
+import LoadingComponent from './components/LoadingComponent'
 //import App from './App'
 
 const Loading = () => <LoadingComponent />

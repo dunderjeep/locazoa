@@ -133,29 +133,6 @@ const Form = props => {
               label={intl.formatMessage({ id: 'subscription_frequency_label' })}
             />
           </div>
-            <Field
-              name="helper"
-              rowHeight={54}
-              component={VirtualizedSelectField}
-              items={users.map(snap => (snap && snap.val ? snap.val : {}))}
-              itemToString={item => (item ? item.displayName : '')}
-              inputProps={{
-                placeholder: intl.formatMessage({ id: 'helper_hint' }),
-                label: intl.formatMessage({ id: 'helper_label' })
-              }}
-              renderSuggestion={({ rootProps, downshiftProps, suggestion, index }) => {
-                const { getItemProps, highlightedIndex } = downshiftProps
-                const itemProps = getItemProps({ item: suggestion })
-                const isHighlighted = highlightedIndex === index
-
-                return (
-                  <MenuItem {...itemProps} selected={isHighlighted} key={index}>
-                    <Avatar alt="avatar" src={suggestion.photoURL} />
-                    <ListItemText primary={suggestion.displayName} />
-                  </MenuItem>
-                )
-              }}
-            />
           </div>
           <div>
             <br/>

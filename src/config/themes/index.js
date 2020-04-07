@@ -43,12 +43,13 @@ const themes = [
   },
   {
     id: 'light',
-    color: '#0000',
+    zDepthShadows : 'none',
+    color: 'white',
     source: {
       palette: {
-        primary: '#fffff',
-        secondary: pink,
-        error: red
+        primary: {
+          main: '#fff',
+        }
       }
     }
   },

@@ -30,3 +30,5 @@ firebase-debug.log
 codecov.yml
 
 /functions/node_modules
+
+/src/config/config.js

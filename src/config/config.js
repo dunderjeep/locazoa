@@ -17,7 +17,7 @@ const LPAsync = Loadable({
 
 const config = {
   firebase_config: {
-    apiKey: "AIzaSyBnEJ1yycQ8nlVhaI2yx0tnDHndDU3Lbzw",
+    apiKey: process.env.REACT_APP_PROD_API_KEY,
     authDomain: "woody-eb4b8.firebaseapp.com",
     databaseURL: "https://woody-eb4b8.firebaseio.com",
     projectId: "woody-eb4b8",
@@ -26,7 +26,7 @@ const config = {
     appId: "1:1076143515724:web:df8b777190d0e5fd976ce9"
   },
   firebase_config_dev: {
-    apiKey: "AIzaSyBUXjYQWkxOKFVJqlR3mNDy2Rv4pH23zeM",
+    apiKey: process.env.REACT_APP_DEV_API_KEY,
     authDomain: "woody-dev-7e1a8.firebaseapp.com",
     databaseURL: "https://woody-dev-7e1a8.firebaseio.com",
     projectId: "woody-dev-7e1a8",

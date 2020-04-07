@@ -1,48 +1,49 @@
-
-import React, { Component, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { withFirebase } from 'firekit-provider'
+import AltIconAvatar from 'rmw-shell/lib/components/AltIconAvatar'
+import Delete from '@material-ui/icons/Delete'
+import CollectionActivity from 'rmw-shell/lib/containers/Activities/CollectionActivity'
+import Divider from '@material-ui/core/Divider'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import React, { Component } from 'react'
 import { compose } from 'redux'
-import { useSelector } from 'react-redux'
 import { injectIntl } from 'react-intl'
 import { withRouter } from 'react-router-dom'
 import { withTheme } from '@material-ui/core/styles'
 
+class Boxes extends Component {
+  renderItem = (key, val) => {
+    const { history } = this.props
 
-// class Boxes extends Component {
+    const { title = '', full_name = '', photoURL } = val
 
-//   render() {
-//     return (
-//       <h1>Hi there</h1>
-//     )
-//   }
-// }
+    return (
+      <div key={key}>
+        <ListItem onClick={() => history.push(`/boxes/edit/${key}`)} key={key}>
+          <AltIconAvatar alt="box" src={photoURL} icon={<Delete />} />
+          <ListItemText
+            primary={title}
+            secondary={full_name}
+            style={{ minWidth: 120 }}
+          />
+        </ListItem>
+        <Divider variant="inset" />
+      </div>
+    )
+  }
 
-// https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_map - how to map out boxes
+  render() {
+    const filterFields = [{ name: 'name' }, { name: 'full_name' }]
 
-const Boxes = props => {
-  const { boxes }= useSelector(state => state.collections);
-  const users = useSelector(state => state.users);
-  // const watchList = useSelector(state => state);
-  const { watchList, watchCol } = props;
-  console.log(boxes);
-  useEffect(() => {
-    watchCol('boxes');
-  }, [])
-  return (
-    <ul>
-      {boxes.map(box => <li key={box.id}>{box.id}</li>)}
-    </ul>
-  );
-} 
+    return (
+      <CollectionActivity
+        name="boxes"
+        createGrant="create_box"
+        filterFields={filterFields}
+        renderItem={this.renderItem}
+        isGranted={s => g => true}
+      />
+    )
+  }
+}
 
-// const mapStateToProps = state => {
-//   const { lists } = state
-//   return {
-//     users: lists.users,
-//     tasks: lists.tasks, //the data from 'public_tasks' path
-//     boxes: lists.boxes
-//   }
-// }
-
-export default compose(injectIntl, withRouter, withTheme, withFirebase)(Boxes)
+export default compose(injectIntl, withRouter, withTheme)(Boxes)

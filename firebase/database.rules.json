@@ -102,9 +102,21 @@
         ".write": "data.child('userId').val() === auth.uid || newData.child('userId').val() === auth.uid"
       }
     },
-    "public_posts_count": {
+    "public_boxes_count": {
       ".read": true,
       ".write": "auth != null"
+    },
+    "public_boxes": {
+      ".read": "auth != null",
+      ".indexOn": [
+        "userId"
+      ],
+      "$tid": {
+        ".indexOn": [
+          "userId"
+        ],
+        ".write": "data.child('userId').val() === auth.uid || newData.child('userId').val() === auth.uid"
+      }
     },
     "companies": {
       ".read": "(auth != null && root.child('admins/'+auth.uid).exists()) || root.child('user_grants/'+auth.uid+'/read_companies').exists()",

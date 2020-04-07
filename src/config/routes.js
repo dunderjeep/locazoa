@@ -9,6 +9,8 @@ const MyLoadable = (opts, preloadComponents) =>
 const AsyncDashboard = MyLoadable({ loader: () => import('../pages/Dashboard') })
 const AsyncAbout = MyLoadable({ loader: () => import('../pages/About') })
 const AsyncCompany = MyLoadable({ loader: () => import('../pages/Companies/Company') })
+const AsyncBox = MyLoadable({ loader: () => import('../pages/Boxes/Box') })
+const AsyncBoxes = MyLoadable({ loader: () => import('../pages/Boxes/Boxes') }, [AsyncBox])
 const AsyncCompanies = MyLoadable({ loader: () => import('../pages/Companies/Companies') }, [AsyncCompany])
 const AsyncTask = MyLoadable({ loader: () => import('../pages/Tasks/Task') })
 const AsyncTasks = MyLoadable({ loader: () => import('../pages/Tasks/Tasks') }, [AsyncTask])
@@ -22,6 +24,9 @@ const routes = [
   <RestrictedRoute type="private" path="/companies" exact component={AsyncCompanies} />,
   <RestrictedRoute type="private" path="/companies/edit/:uid" exact component={AsyncCompany} />,
   <RestrictedRoute type="private" path="/companies/create" exact component={AsyncCompany} />,
+  <RestrictedRoute type="private" path="/boxes" exact component={AsyncBoxes} />,
+  <RestrictedRoute type="private" path="/boxes/create" exact component={AsyncBox} />,
+  <RestrictedRoute type="private" path="/boxes/edit/:uid" exact component={AsyncBox} />,
   <RestrictedRoute type="private" path="/tasks" exact component={AsyncTasks} />,
   <RestrictedRoute type="private" path="/tasks/create" exact component={AsyncTask} />,
   <RestrictedRoute type="private" path="/tasks/edit/:uid" exact component={AsyncTask} />,

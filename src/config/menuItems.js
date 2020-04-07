@@ -1,15 +1,11 @@
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import Brightness2 from '@material-ui/icons/Brightness2'
 import Brightness7 from '@material-ui/icons/Brightness7'
-import Business from '@material-ui/icons/Business'
-import ChatIcon from '@material-ui/icons/Chat'
 import DaschboardIcon from '@material-ui/icons/Dashboard'
 import GroupIcon from '@material-ui/icons/Group'
-import InfoOutlined from '@material-ui/icons/InfoOutlined'
 import LanguageIcon from '@material-ui/icons/Language'
 import ListIcon from '@material-ui/icons/List'
 import LockIcon from '@material-ui/icons/Lock'
-import PersonIcon from '@material-ui/icons/Person'
 import React from 'react'
 import Security from '@material-ui/icons/Security'
 import SettingsIcon from '@material-ui/icons/SettingsApplications'
@@ -84,50 +80,56 @@ const getMenuItems = props => {
       primaryText: intl.formatMessage({ id: 'dashboard' }),
       leftIcon: <DaschboardIcon />
     },
+    // {
+    //   visible: isAuthorised,
+    //   primaryText: intl.formatMessage({ id: 'chats' }),
+    //   primaryTogglesNestedList: true,
+    //   leftIcon: <ChatIcon />,
+    //   nestedItems: [
+    //     {
+    //       value: '/chats',
+    //       visible: isAuthorised,
+    //       primaryText: intl.formatMessage({ id: 'private' }),
+    //       leftIcon: <PersonIcon />
+    //     },
+    //     {
+    //       value: '/public_chats',
+    //       visible: isAuthorised,
+    //       primaryText: intl.formatMessage({ id: 'public' }),
+    //       leftIcon: <GroupIcon />
+    //     }
+    //   ]
+    // },
+    // {
+    //   value: '/companies',
+    //   visible: isGranted('read_companies'),
+    //   primaryText: intl.formatMessage({ id: 'companies' }),
+    //   leftIcon: <Business />
+    // },
     {
+      value: '/boxes',
       visible: isAuthorised,
-      primaryText: intl.formatMessage({ id: 'chats' }),
-      primaryTogglesNestedList: true,
-      leftIcon: <ChatIcon />,
-      nestedItems: [
-        {
-          value: '/chats',
-          visible: isAuthorised,
-          primaryText: intl.formatMessage({ id: 'private' }),
-          leftIcon: <PersonIcon />
-        },
-        {
-          value: '/public_chats',
-          visible: isAuthorised,
-          primaryText: intl.formatMessage({ id: 'public' }),
-          leftIcon: <GroupIcon />
-        }
-      ]
-    },
-    {
-      value: '/companies',
-      visible: isGranted('read_companies'),
-      primaryText: intl.formatMessage({ id: 'companies' }),
-      leftIcon: <Business />
-    },
-    {
-      value: '/tasks',
-      visible: isAuthorised,
-      primaryText: intl.formatMessage({ id: 'tasks' }),
+      primaryText: intl.formatMessage({ id: 'boxes' }),
       leftIcon: <ListIcon />
     },
-    {
-      value: '/posts',
-      visible: isAuthorised,
-      primaryText: intl.formatMessage({ id: 'posts' }),
-      leftIcon: <ListIcon />
-    },
-    {
-      value: '/about',
-      visible: isAuthorised,
-      primaryText: intl.formatMessage({ id: 'about' }),
-      leftIcon: <InfoOutlined />
-    },
+    // {
+    //   value: '/tasks',
+    //   visible: isAuthorised,
+    //   primaryText: intl.formatMessage({ id: 'tasks' }),
+    //   leftIcon: <ListIcon />
+    // },
+    // {
+    //   value: '/posts',
+    //   visible: isAuthorised,
+    //   primaryText: intl.formatMessage({ id: 'posts' }),
+    //   leftIcon: <ListIcon />
+    // },
+    // {
+    //   value: '/about',
+    //   visible: isAuthorised,
+    //   primaryText: intl.formatMessage({ id: 'about' }),
+    //   leftIcon: <InfoOutlined />
+    // },
     {
       visible: isAuthorised, // In prod: isGranted('administration'),
       primaryTogglesNestedList: true,

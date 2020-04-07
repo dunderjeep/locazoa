@@ -42,6 +42,18 @@ const themes = [
     }
   },
   {
+    id: 'light',
+    zDepthShadows : 'none',
+    color: 'white',
+    source: {
+      palette: {
+        primary: {
+          main: '#fff',
+        }
+      }
+    }
+  },
+  {
     id: 'green',
     color: green[500],
     source: {

@@ -3,7 +3,7 @@ import React  from 'react'
 import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
 import { withFirebase } from 'firekit-provider'
-import { withTheme } from '@material-ui/core/styles'
+import { withTheme, withStyles } from '@material-ui/core/styles'
 import Scrollbar from 'rmw-shell/lib/components/Scrollbar'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -21,20 +21,21 @@ const styles = theme => ({
 	  alignItems: 'center'
   },
   hero: {
-    width: '100%'
+    width: '75%'
   } 
 })
 
-const Dashboard = () => {
+const Dashboard = ({ theme, classes }) => {
     return (
       <Activity>
+        <CssBaseline />
         <Scrollbar>
-        <Container>
-          <img src="/hero.svg" alt="Material-UI hero"/>
+        <Container className={classes.container}>
+          <img src="/hero.svg" alt="Material-UI hero" className={classes.hero} />
         </Container>
         </Scrollbar>
       </Activity>
     )
 }
 
-export default compose(injectIntl, withRouter, withTheme, withFirebase)(Dashboard)
+export default compose(injectIntl, withRouter, withTheme, withStyles(styles), withFirebase)(Dashboard)

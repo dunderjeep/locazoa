@@ -1,0 +1,6 @@
+# 2010
+*.txt -crlf
+*.sh -crlf
+# 2020
+*.txt text eol=lf 
+*.sh -crlf

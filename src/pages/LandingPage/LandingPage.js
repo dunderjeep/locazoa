@@ -9,8 +9,6 @@ import { withRouter } from 'react-router-dom'
 import { withStyles, createMuiTheme } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 
 const _theme = createMuiTheme({
   shadows: ["none"],
@@ -30,11 +28,10 @@ const styles = theme => ({
     height: '100vh',
 	  display: 'flex',
 	  justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
+	  alignItems: 'center'
   },
   hero: {
-    width: '75%'
+    width: '100%'
   } 
 })
 
@@ -66,23 +63,26 @@ const LandingPage = ({ classes, history, theme }) => {
         <meta name="msapplication-navbutton-color" content={theme.palette.primary.main} />
         <title>Locazoa</title>
       </Helmet>
+      <AppBar position="static" className={classes.main} elevation={0}>
+        <Toolbar disableGutters>
+          <div style={{ flex: 1 }} />
+          <Tooltip id="tooltip-icon1" title="Sign in">
+            <IconButton
+              name="signin"
+              aria-label="Open Sign In"
+              onClick={() => {
+                history.push('/signin')
+              }}
+              rel="noopener"
+            >
+              <AccountCircle />
+            </IconButton>
+          </Tooltip>
+        </Toolbar>
+      </AppBar>
       <main>
         <Container className={classes.container}>
           <img src="/hero.svg" alt="Material-UI hero" className={classes.hero}/>
-          <Grid container spacing={2} justify="center">
-            <Grid item>
-            <Button
-                onClick={() => {
-                  history.push('/signin')
-                }}
-                className={classes.button}
-                variant="contained"
-                color="primary"
-              >
-                {'Get Started'}
-              </Button>
-            </Grid>
-          </Grid>
         </Container>
       </main>
     </div>

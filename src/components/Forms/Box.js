@@ -1,14 +1,7 @@
 import React, { useRef } from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import Photo from '@material-ui/icons/Photo'
-import ListItemText from '@material-ui/core/ListItemText'
-import MenuItem from '@material-ui/core/MenuItem'
 import PropTypes from 'prop-types'
 import TextField from 'rmw-shell/lib/components/ReduxFormFields/TextField'
-import { ImageCropDialog } from 'rmw-shell/lib/containers/ImageCropDialog'
 import { Field, reduxForm, formValueSelector, change, submit } from 'redux-form'
-import AvatarImageField from 'rmw-shell/lib/components/ReduxFormFields/AvatarImageField'
-import { VirtualizedSelectField } from 'muishift'
 import { connect } from 'react-redux'
 import { getList } from 'firekit'
 import { injectIntl } from 'react-intl'
@@ -22,7 +15,7 @@ import { setSimpleValue } from 'rmw-shell/lib/store/simpleValues/actions'
 import QuestionDialog from '../../containers/QuestionDialog'
 
 const Form = props => {
-  const { handleSubmit, intl, initialized, users, setDialogIsOpen, dialogs, match, status, setSimpleValue } = props;
+  const { handleSubmit, intl, initialized, match, status, setSimpleValue } = props;
   const uid = match.params.uid;
 
   const handlePublishBox = () => {

@@ -1,28 +1,25 @@
 language: node_js
 node_js:
-  - 8
-
+- 8
+os: windows
 cache:
   directories:
   - node_modules
   - functions/node_modules
-
 before_install:
-  - chmod +x ./continuous_deployment/before_install.sh
-  - ./continuous_deployment/before_install.sh
-
+- chmod +x ./continuous_deployment/before_install.sh
+- "./continuous_deployment/before_install.sh"
 before_script:
-  - npm test
-  - chmod +x ./continuous_deployment/build.sh
-  - travis_wait 40 ./continuous_deployment/build.sh
-
+- npm test
+- chmod +x ./continuous_deployment/build.sh
+- travis_wait 40 ./continuous_deployment/build.sh
 script:
-  - chmod +x ./continuous_deployment/deploy.sh
-  - travis_wait 40 ./continuous_deployment/deploy.sh
-
+- chmod +x ./continuous_deployment/deploy.sh
+- travis_wait 40 ./continuous_deployment/deploy.sh
 after_script:
-  - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-  - node node_modules/lighthouse-ci/runlighthouse.js https://react-most-wanted.com
-
-  
+- cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- node node_modules/lighthouse-ci/runlighthouse.js https://react-most-wanted.com
+env:
+  global:
+    secure: OR1xMeHQslB3Vaj6f+TzYdqTG6dkZjy0pC7TEYDC0KWOL4P8iaodxxMOUuFfe7DNtO6jXljzf6uoO3JlJomOcAiHJZ2hD9ZQ7YnnfBUUifAyhKMBNbHp8aemnuqpKCgFZMNGDwa79NO0Z0/e6eSK09B99Gf3S/OC65uHE2OaaLFSbVhTF7OwAW//zm8nika1P4QC8t4Ly7sEXGz6gz8FmqQ22oHAhwBVpLZjis0FVeKRYHE7jYHrE25u1bvl7VqZzwEQGXRWZ6tC4eKW0ZgOT/4ONCu5dR8yYRqcHpwnKh035vyKtpiFExndxMKMQ97fBL+Rcd6a6ljcDsFIhZbNSDsnSricNjoHtgekhNfZGszbr8VHy68O8VO2H4gDq2L0iZxU1LMZHJVnVgjJa9rn57G39pvOY0HPyvdBF1lnYMoo8Rm1Arx8mFUBqh0V/lDanV0IzhfNatu/U8lhtQhOhLcj4xvA5LdbgBsl7re65dCj8fjfYlqf/31gG+RC9LcEo3rOB+8aZr8OVJWnX4exLYhUcm8X58cS4NiPM0WQJP2Y5/sOgV9O0ZXxcAlcskN6uuHVUKd4t5S8zM3GKzzdUfK2D/vDIwCTeEmf+ohOsAOIs4zDZEyK0LfYCyRmOCn1VU7cSLruQ1GnsvBU+y0rOwOPLOtMSC707KqIXWHjPhQ=

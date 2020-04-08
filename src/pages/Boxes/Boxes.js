@@ -1,6 +1,6 @@
 import AltIconAvatar from 'rmw-shell/lib/components/AltIconAvatar'
 import Delete from '@material-ui/icons/Delete'
-import CollectionActivity from 'rmw-shell/lib/containers/Activities/CollectionActivity'
+import CollectionActivity from '../../containers/Activities/CollectionActivity'
 import Divider from '@material-ui/core/Divider'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'

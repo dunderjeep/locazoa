@@ -66,17 +66,18 @@ const LandingPage = ({ classes, history, theme }) => {
           <img src="/hero.svg" alt="Material-UI hero" className={classes.hero}/>
           <Grid container spacing={2} justify="center">
             <Grid item>
-            <Button
-                onClick={() => {
-                  history.push('/signin')
-                }}
-                className={classes.button}
-                variant="contained"
-                color="primary"
-              >
+              <Button
+                  onClick={() => {
+                    history.push('/signin')
+                  }}
+                  className={classes.button}
+                  variant="contained"
+                  color="primary"
+                >
                 {'Get Started'}
               </Button>
             </Grid>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScggoqgHD9QR-mJOI5Nj8FF2j2JJt572ZQ4uffK1zkgiZgCSw/viewform?embedded=true" width="640" height="3238" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
           </Grid>
         </Container>
       </main>

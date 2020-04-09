@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 const _theme = createMuiTheme({
   shadows: ["none"],
@@ -23,6 +24,13 @@ const styles = theme => ({
   },
   item: {
     textAlign: 'center'
+  },
+  form: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  submit: {
+    marginLeft: '0.5rem'
   }
 })
 
@@ -62,14 +70,37 @@ const LandingPage = ({ classes, history, theme }) => {
             <Grid item xs={12} className={classes.item}>
               <img src="/hero.svg" alt="Material-UI hero" className={classes.hero}/>
             </Grid>
-            <Grid>
-              <form action="https://locazoa.us19.list-manage.com/subscribe/post?u=eeaefdd53c9546026e574eeed&amp;id=337e2f4020" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
-                <div id="mc_embed_signup_scroll">
-                  <input type="email" value={email} name="EMAIL" className="email" id="mce-EMAIL" placeholder="email address" onChange={e => setEmail(e.target.value)} required />&nbsp;
+            <div>
+              <form action="https://locazoa.us19.list-manage.com/subscribe/post?u=eeaefdd53c9546026e574eeed&amp;id=337e2f4020" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
+                {/* <div id="mc_embed_signup_scroll">
+                  <input type="email" value={email} name="EMAIL" className="email" id="mce-EMAIL" placeholder="email address" onChange={e => setEmail(e.target.value)} required />&nbsp;&nbsp;
                   <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" onChange={() => console.log('submit')}></input>
-                </div>
+                </div> */}
+                  <div id="mc_embed_signup_scroll" className={classes.form} >
+                    <TextField
+                      id="mce-EMAIL"
+                      required
+                      name="EMAIL"
+                      type="email"
+                      label='Email'
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      helperText="sign up for our newsletter"
+                    />
+                    <Button
+                      id="mc-embedded-subscribe"
+                      name="subscribe"
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      className={classes.submit}
+                      // value="Subscribe"
+                    >
+                      Subscribe
+                    </Button>
+                  </div>
               </form>
-            </Grid>
+            </div>
           </Grid>
         </Container>
       </main>

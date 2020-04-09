@@ -20,7 +20,8 @@ const _theme = createMuiTheme({
 
 const styles = theme => ({
   main : {
-    background: 'white'
+    background: 'white',
+    flexGrow: 1
   },
   item: {
     textAlign: 'center',
@@ -29,14 +30,25 @@ const styles = theme => ({
   img: {
     maxWidth: '100%',
     width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: 'auto'
+    }
   },
   form: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+	  display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    height: '160px',
+  },
+  input: {
+    width: '100%'
   },
   submit: {
-    marginLeft: '0.5rem'
-  }
+    marginTop: '0.5rem'
+  },
+
 })
 
 const LandingPage = ({ classes, history, theme }) => {
@@ -77,14 +89,17 @@ const LandingPage = ({ classes, history, theme }) => {
             </Grid>
           </Grid>
           <Grid container spacing={2} justify="center">
-            <Grid item xs={12} className={classes.item}>
+            <Grid item xs={12} sm={4} className={classes.item}>
               <img src="/panel-1.svg" alt="create a box"  className={classes.img}/>
             </Grid>
-            <Grid item xs={12} className={classes.item}>
+            <Grid item xs={12} sm={4} className={classes.item}>
               <img src="/panel-2.svg" alt="make a box"  className={classes.img}/>
             </Grid>
-            <Grid item xs={12} className={classes.item}>
+            <Grid item xs={12} sm={4} className={classes.item}>
               <img src="/panel-3.svg" alt="get a box"  className={classes.img}/>
+            </Grid>
+            <Grid item xs={12} className={classes.item}>
+              <img src="/community-supported-agriculture.svg" alt="community supported agriculture"  className={classes.img}/>
             </Grid>
             <Grid item xs={12} className={classes.item}>
               <div>
@@ -103,6 +118,7 @@ const LandingPage = ({ classes, history, theme }) => {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         helperText="sign up for our newsletter"
+                        className={classes.input}
                       />
                       <Button
                         id="mc-embedded-subscribe"

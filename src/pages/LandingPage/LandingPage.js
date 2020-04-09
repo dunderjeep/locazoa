@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { withRouter } from 'react-router-dom'
 import { withStyles, createMuiTheme } from '@material-ui/core/styles'
@@ -21,16 +21,9 @@ const styles = theme => ({
   main : {
     background: 'white'
   },
-  container: {
-    height: '100vh',
-	  display: 'flex',
-	  justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
-  },
-  hero: {
-    width: '75%'
-  } 
+  item: {
+    textAlign: 'center'
+  }
 })
 
 const LandingPage = ({ classes, history, theme }) => {
@@ -52,6 +45,8 @@ const LandingPage = ({ classes, history, theme }) => {
     }
   })
 
+  const [ email, setEmail ] = useState('');
+
   return (
     <div className={classes.main}>
       <CssBaseline />
@@ -63,21 +58,18 @@ const LandingPage = ({ classes, history, theme }) => {
       </Helmet>
       <main>
         <Container className={classes.container}>
-          <img src="/hero.svg" alt="Material-UI hero" className={classes.hero}/>
           <Grid container spacing={2} justify="center">
-            <Grid item>
-              <Button
-                  onClick={() => {
-                    history.push('/signin')
-                  }}
-                  className={classes.button}
-                  variant="contained"
-                  color="primary"
-                >
-                {'Get Started'}
-              </Button>
+            <Grid item xs={12} className={classes.item}>
+              <img src="/hero.svg" alt="Material-UI hero" className={classes.hero}/>
             </Grid>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScggoqgHD9QR-mJOI5Nj8FF2j2JJt572ZQ4uffK1zkgiZgCSw/viewform?embedded=true" width="640" height="3238" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
+            <Grid>
+              <form action="https://locazoa.us19.list-manage.com/subscribe/post?u=eeaefdd53c9546026e574eeed&amp;id=337e2f4020" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
+                <div id="mc_embed_signup_scroll">
+                  <input type="email" value={email} name="EMAIL" className="email" id="mce-EMAIL" placeholder="email address" onChange={e => setEmail(e.target.value)} required />&nbsp;
+                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" onChange={() => console.log('submit')}></input>
+                </div>
+              </form>
+            </Grid>
           </Grid>
         </Container>
       </main>

@@ -88,6 +88,9 @@ const LandingPage = ({ classes, history, theme }) => {
               <img src="/landing-page-iphone-8-1.svg" alt="Material-UI hero" className={classes.img}/>
             </Grid>
           </Grid>
+          <Grid item xs={12} className={classes.item}>
+            <img src="/community-supported-agriculture.svg" alt="community supported agriculture"  className={classes.img}/>
+          </Grid>
           <Grid container spacing={2} justify="center">
             <Grid item xs={12} sm={4} className={classes.item}>
               <img src="/panel-1.svg" alt="create a box"  className={classes.img}/>
@@ -97,9 +100,6 @@ const LandingPage = ({ classes, history, theme }) => {
             </Grid>
             <Grid item xs={12} sm={4} className={classes.item}>
               <img src="/panel-3.svg" alt="get a box"  className={classes.img}/>
-            </Grid>
-            <Grid item xs={12} className={classes.item}>
-              <img src="/community-supported-agriculture.svg" alt="community supported agriculture"  className={classes.img}/>
             </Grid>
             <Grid item xs={12} className={classes.item}>
               <div>

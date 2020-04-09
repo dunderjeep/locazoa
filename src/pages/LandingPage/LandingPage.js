@@ -23,7 +23,12 @@ const styles = theme => ({
     background: 'white'
   },
   item: {
-    textAlign: 'center'
+    textAlign: 'center',
+    width: '100%',
+  },
+  img: {
+    maxWidth: '100%',
+    width: '100%',
   },
   form: {
     display: 'flex',
@@ -68,39 +73,52 @@ const LandingPage = ({ classes, history, theme }) => {
         <Container className={classes.container}>
           <Grid container spacing={2} justify="center">
             <Grid item xs={12} className={classes.item}>
-              <img src="/hero.svg" alt="Material-UI hero" className={classes.hero}/>
+              <img src="/landing-page-iphone-8-1.svg" alt="Material-UI hero" className={classes.img}/>
             </Grid>
-            <div>
-              <form action="https://locazoa.us19.list-manage.com/subscribe/post?u=eeaefdd53c9546026e574eeed&amp;id=337e2f4020" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
-                {/* <div id="mc_embed_signup_scroll">
-                  <input type="email" value={email} name="EMAIL" className="email" id="mce-EMAIL" placeholder="email address" onChange={e => setEmail(e.target.value)} required />&nbsp;&nbsp;
-                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" onChange={() => console.log('submit')}></input>
-                </div> */}
-                  <div id="mc_embed_signup_scroll" className={classes.form} >
-                    <TextField
-                      id="mce-EMAIL"
-                      required
-                      name="EMAIL"
-                      type="email"
-                      label='Email'
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      helperText="sign up for our newsletter"
-                    />
-                    <Button
-                      id="mc-embedded-subscribe"
-                      name="subscribe"
-                      type="submit"
-                      color="primary"
-                      variant="contained"
-                      className={classes.submit}
-                      // value="Subscribe"
-                    >
-                      Subscribe
-                    </Button>
-                  </div>
-              </form>
-            </div>
+          </Grid>
+          <Grid container spacing={2} justify="center">
+            <Grid item xs={12} className={classes.item}>
+              <img src="/panel-1.svg" alt="create a box"  className={classes.img}/>
+            </Grid>
+            <Grid item xs={12} className={classes.item}>
+              <img src="/panel-2.svg" alt="make a box"  className={classes.img}/>
+            </Grid>
+            <Grid item xs={12} className={classes.item}>
+              <img src="/panel-3.svg" alt="get a box"  className={classes.img}/>
+            </Grid>
+            <Grid item xs={12} className={classes.item}>
+              <div>
+                <form action="https://locazoa.us19.list-manage.com/subscribe/post?u=eeaefdd53c9546026e574eeed&amp;id=337e2f4020" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
+                  {/* <div id="mc_embed_signup_scroll">
+                    <input type="email" value={email} name="EMAIL" className="email" id="mce-EMAIL" placeholder="email address" onChange={e => setEmail(e.target.value)} required />&nbsp;&nbsp;
+                    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" onChange={() => console.log('submit')}></input>
+                  </div> */}
+                    <div id="mc_embed_signup_scroll" className={classes.form} >
+                      <TextField
+                        id="mce-EMAIL"
+                        required
+                        name="EMAIL"
+                        type="email"
+                        label='Email'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        helperText="sign up for our newsletter"
+                      />
+                      <Button
+                        id="mc-embedded-subscribe"
+                        name="subscribe"
+                        type="submit"
+                        color="primary"
+                        variant="contained"
+                        className={classes.submit}
+                        // value="Subscribe"
+                      >
+                        Subscribe
+                      </Button>
+                    </div>
+                </form>
+              </div>
+            </Grid>
           </Grid>
         </Container>
       </main>
